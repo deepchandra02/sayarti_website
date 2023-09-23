@@ -1,5 +1,5 @@
 import React from 'react';
-import Typed from 'react-typed';
+import { TypeAnimation } from 'react-type-animation';
 import { Link } from 'react-scroll';
 
 const Hero = () => {
@@ -10,20 +10,25 @@ const Hero = () => {
           Coming Soon
         </h1>
         <div className='flex justify-center items-center'>
-          <p className='md:text-5xl sm:text-4xl text-xl font-bold py-4'>
-            One stop solution for
-          </p>
-          <Typed
+          <TypeAnimation
             className='md:text-5xl sm:text-4xl text-xl font-bold md:pl-4 pl-2'
-            strings={["Auto Parts", "Auto Needs", "Auto Care"]}
-            typeSpeed={120}
-            backSpeed={50}
-            loop
+            sequence={[
+              // Same substring at the start will only be typed out once, initially
+              'One stop solution for Auto Parts',
+              1000, // wait 1s before replacing "Mice" with "Hamsters"
+              'One stop solution for Auto Needs',
+              1000,
+              'One stop solution for Auto Care',
+              1000
+            ]}
+            wrapper="span"
+            speed={20}
+            repeat={Infinity}
           />
         </div>
-        <p className='md:text-2xl text-xl font-bold text-gray-400'>Connecting cars to care</p>
+        <p className='md:text-2xl text-xl font-bold text-gray-400 mt-2'>Connecting cars to care</p>
         <Link
-          to="footerSection"        // the id or name of the target element
+          to="footerSection"
           smooth={true}
           duration={500}
         >
